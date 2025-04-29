@@ -1,0 +1,15 @@
+{
+  "name": "l3t08---capstone-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd FRONTEND && npm run dev \" \"cd BACKEND && npm run dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
