@@ -37,7 +37,9 @@ function App() {
      */
     <Suspense fallback={<p>...Loading</p>}>
       <Header />
-      {useRoutes(routes)}
+      <div className="flex-1 flex flex-col pt-20 overflow-auto">
+        {useRoutes(routes)}
+      </div>
     </Suspense>
   );
 }

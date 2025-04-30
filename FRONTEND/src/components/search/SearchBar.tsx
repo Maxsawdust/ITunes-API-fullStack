@@ -7,6 +7,8 @@ import {
 } from "../../store/reducers/searchReducer";
 import { useEffect, useRef } from "react";
 import MediaQueryType from "../../types/mediaQueryType";
+import { useNavigate } from "react-router";
+import SearchResultType from "../../types/SearchResultType";
 
 export default function SearchBar() {
   const searchTerm = useAppSelector((state) => state.search.searchTerm);
@@ -17,6 +19,8 @@ export default function SearchBar() {
   const blurTimeoutRef = useRef<number | undefined>(undefined);
 
   const isSearching = useAppSelector((state) => state.search.isSearching);
+
+  const navigate = useNavigate();
 
   const handleFocus = () => {
     if (blurTimeoutRef.current) {
@@ -45,6 +49,12 @@ export default function SearchBar() {
     }
   };
 
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      navigate("/collection");
+    }
+  };
+
   const getSearchResults = async () => {
     // clear the previous timeout
     if (fetchTimeoutRef.current) {
@@ -67,7 +77,7 @@ export default function SearchBar() {
           throw new Error(errorMessage);
         }
 
-        const searchResults = await response.json();
+        const searchResults: SearchResultType = await response.json();
 
         console.log(searchResults);
 
@@ -94,6 +104,7 @@ export default function SearchBar() {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
+        onKeyDown={handleEnter}
         value={searchTerm}
       />
 

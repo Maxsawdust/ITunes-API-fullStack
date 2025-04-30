@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useAppSelector } from "../../store/hooks/reduxHooks";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
+import getResultId from "../../utils/getResultId";
+import getResultName from "../../utils/getResultName";
 
 export default function SearchResults() {
   const searchResults = useAppSelector((state) => state.search.searchResults);
@@ -59,17 +61,16 @@ export default function SearchResults() {
 
             <ul className="mt-2 px-4">
               {searchResults.results.slice(0, 5).map((result, index) => {
+                const resultId = getResultId(result);
+                const resultName = getResultName(result);
                 return (
                   <motion.li
-                    key={`${result.id}-${index}`}
+                    key={`${resultId}-${index}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                     className="list-disc list-inside">
-                    <Link
-                      to={`/collection/${result.artistId || result.trackId}`}>
-                      {result.collectionName || result.trackName}
-                    </Link>
+                    <Link to={`/collection/${resultId}`}>{resultName}</Link>
                   </motion.li>
                 );
               })}

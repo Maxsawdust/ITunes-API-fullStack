@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     //
-    <motion.header className="min-h-20 h-fit flex flex-col justify-start items-center bg-secondary relative">
+    <motion.header className="min-h-20 h-fit w-full flex flex-col justify-start items-center bg-secondary fixed top-0">
       <SearchBar />
 
       <AnimatePresence>{isSearching && <SearchResults />}</AnimatePresence>
