@@ -1,18 +1,16 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import "dotenv/config";
+import {
+  generateToken,
+  getSearchResults,
+} from "../controllers/search.controller";
+import JWTMiddleware from "../middleware/JWTMiddleware";
 
 const router = express.Router();
 
-router.get("/music", async (req: Request, res: Response) => {
-  try {
-    const songsResponse = await fetch(
-      `https://itunes.apple.com/lookup?id=1686375523&entity=song`
-    );
-    const songsData = await songsResponse.json();
+// post route to generate JWT on app load
+router.post("/token", generateToken);
 
-    res.json(songsData);
-  } catch (err: any) {
-    res.status(500).json({ error: err });
-  }
-});
+router.get("/search", JWTMiddleware, getSearchResults);
 
 export default router;
