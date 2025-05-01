@@ -4,6 +4,8 @@ import MediaQueryType from "../../types/mediaQueryType";
 
 interface searchReducerType {
   isSearching: boolean;
+  isFetching: boolean;
+  noResults: boolean;
   searchResults: SearchResultType;
   searchTerm: string;
   mediaQuery: MediaQueryType;
@@ -11,6 +13,8 @@ interface searchReducerType {
 
 const initialState: searchReducerType = {
   isSearching: false,
+  isFetching: false,
+  noResults: false,
   searchResults: {
     resultCount: 0,
     results: [],
@@ -27,6 +31,14 @@ const searchSlice = createSlice({
       state.isSearching = action.payload;
     },
 
+    setIsFetching: (state, action) => {
+      state.isFetching = action.payload;
+    },
+
+    setNoResults: (state, action) => {
+      state.noResults = action.payload;
+    },
+
     setSearchResults: (state, action) => {
       state.searchResults = action.payload;
     },
@@ -41,7 +53,13 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setSearching, setSearchResults, setSearchTerm, setMediaQuery } =
-  searchSlice.actions;
+export const {
+  setSearching,
+  setIsFetching,
+  setSearchResults,
+  setSearchTerm,
+  setMediaQuery,
+  setNoResults,
+} = searchSlice.actions;
 
 export default searchSlice.reducer;

@@ -9,11 +9,13 @@
 export default interface ResultType {
   artistName: string;
   artworkUrl100: string;
-  kind: string;
+  kind?: string;
+  wrapperType?: string;
   primaryGenreName: string;
   releaseDate: string;
   trackId?: number;
   collectionId?: number;
+  id?: number;
   trackName?: string;
   collectionName?: string;
   trackViewUrl: string;

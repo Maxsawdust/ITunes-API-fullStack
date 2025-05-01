@@ -4,11 +4,14 @@ import {
   setSearchResults,
   setSearchTerm,
   setMediaQuery,
+  setIsFetching,
+  setNoResults,
 } from "../../store/reducers/searchReducer";
 import { useEffect, useRef } from "react";
 import MediaQueryType from "../../types/mediaQueryType";
 import { useNavigate } from "react-router";
 import SearchResultType from "../../types/SearchResultType";
+import getResultId from "../../utils/getResultId";
 
 export default function SearchBar() {
   const searchTerm = useAppSelector((state) => state.search.searchTerm);
@@ -21,6 +24,10 @@ export default function SearchBar() {
   const isSearching = useAppSelector((state) => state.search.isSearching);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getSearchResults();
+  }, [searchTerm, mediaQuery]);
 
   const handleFocus = () => {
     if (blurTimeoutRef.current) {
@@ -56,6 +63,9 @@ export default function SearchBar() {
   };
 
   const getSearchResults = async () => {
+    dispatch(setNoResults(false));
+    dispatch(setIsFetching(true));
+
     // clear the previous timeout
     if (fetchTimeoutRef.current) {
       clearTimeout(fetchTimeoutRef.current);
@@ -79,18 +89,27 @@ export default function SearchBar() {
 
         const searchResults: SearchResultType = await response.json();
 
-        console.log(searchResults);
+        if (searchResults.resultCount === 0) {
+          dispatch(setNoResults(true));
+          dispatch(setIsFetching(false));
+          return;
+        }
 
-        dispatch(setSearchResults(searchResults));
+        const resultsWithIds = searchResults.results.map((result) => ({
+          ...result,
+          id: getResultId(result),
+        }));
+
+        console.log(resultsWithIds);
+        dispatch(setIsFetching(false));
+        dispatch(
+          setSearchResults({ ...searchResults, results: resultsWithIds })
+        );
       } catch (err: any) {
         console.error(err.message);
       }
     }, 300);
   };
-
-  useEffect(() => {
-    getSearchResults();
-  }, [searchTerm, mediaQuery]);
 
   return (
     <div
