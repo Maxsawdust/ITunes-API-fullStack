@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ResultType from "../../types/resultsType";
 import { FaStar } from "react-icons/fa";
-import { useAppDispatch } from "../../store/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/reduxHooks";
 import {
   addToFavourites,
   removeFromFavourites,
@@ -14,6 +14,13 @@ interface Props {
 export default function AddToFavourites({ result }: Props) {
   const [isFavourite, setIsFavourite] = useState(false);
   const dispatch = useAppDispatch();
+  const favourites = useAppSelector((state) => state.favourites.favourites);
+
+  useEffect(() => {
+    favourites.some((favourite) => favourite.id === result.id) &&
+      setIsFavourite(true);
+  }, []);
+
   const toggleFavourite = () => {
     // getting the opposite of state value before then updating state to reflect this
     const setAsFavourite = !isFavourite;

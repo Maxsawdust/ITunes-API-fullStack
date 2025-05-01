@@ -19,9 +19,9 @@ export default function CollectionPage() {
   return (
     <div className="flex-1 flex flex-col gap-5 py-5 items-center overflow-auto">
       <h1 className="text-5xl font-semibold mb-5">Top Results</h1>
-      {searchResults.results.map((result) => {
+      {searchResults.results.map((result, index) => {
         const resultId = getResultId(result);
-        return <ResultCard result={result} key={resultId} />;
+        return <ResultCard index={index} result={result} key={resultId} />;
       })}
     </div>
   );

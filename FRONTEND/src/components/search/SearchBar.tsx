@@ -12,6 +12,8 @@ import MediaQueryType from "../../types/mediaQueryType";
 import { useNavigate } from "react-router";
 import SearchResultType from "../../types/SearchResultType";
 import getResultId from "../../utils/getResultId";
+import getResultName from "../../utils/getResultName";
+import getResultKind from "../../utils/getResultKind";
 
 export default function SearchBar() {
   const searchTerm = useAppSelector((state) => state.search.searchTerm);
@@ -59,6 +61,7 @@ export default function SearchBar() {
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       navigate("/collection");
+      dispatch(setSearching(false));
     }
   };
 
@@ -95,15 +98,16 @@ export default function SearchBar() {
           return;
         }
 
-        const resultsWithIds = searchResults.results.map((result) => ({
+        const uniformResults = searchResults.results.map((result) => ({
           ...result,
           id: getResultId(result),
+          name: getResultName(result),
+          kind: getResultKind(result),
         }));
 
-        console.log(resultsWithIds);
         dispatch(setIsFetching(false));
         dispatch(
-          setSearchResults({ ...searchResults, results: resultsWithIds })
+          setSearchResults({ ...searchResults, results: uniformResults })
         );
       } catch (err: any) {
         console.error(err.message);
@@ -137,7 +141,6 @@ export default function SearchBar() {
         <option value="movie">Movies</option>
         <option value="podcast">Podcasts</option>
         <option value="audiobook">Audiobooks</option>
-        <option value="shortFilm">Short Films</option>
         <option value="tvShow">TV Shows</option>
         <option value="software">Software</option>
         <option value="ebook">eBooks</option>

@@ -18,5 +18,6 @@ export default interface ResultType {
   id?: number;
   trackName?: string;
   collectionName?: string;
+  name?: string;
   trackViewUrl: string;
 }

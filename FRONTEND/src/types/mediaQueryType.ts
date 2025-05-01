@@ -4,7 +4,6 @@ export type MediaQueryType =
   | "movie"
   | "podcast"
   | "audiobook"
-  | "shortFilm"
   | "tvShow"
   | "software"
   | "ebook";
