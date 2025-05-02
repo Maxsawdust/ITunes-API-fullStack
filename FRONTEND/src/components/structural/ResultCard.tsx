@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import ResultType from "../../types/resultsType";
 import { ResultKindLabel, AddToFavourites } from "../";
 import { easeIn, motion } from "framer-motion";

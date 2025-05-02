@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useAppSelector } from "../../store/hooks/reduxHooks";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import getResultName from "../../utils/getResultName";
 import { useRef } from "react";
 

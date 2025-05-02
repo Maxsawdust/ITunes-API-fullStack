@@ -9,7 +9,7 @@ import {
 } from "../../store/reducers/searchReducer";
 import { useEffect, useRef } from "react";
 import MediaQueryType from "../../types/mediaQueryType";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import SearchResultType from "../../types/SearchResultType";
 import getResultId from "../../utils/getResultId";
 import getResultName from "../../utils/getResultName";
@@ -91,6 +91,8 @@ export default function SearchBar() {
         }
 
         const searchResults: SearchResultType = await response.json();
+
+        console.log(searchResults.results);
 
         if (searchResults.resultCount === 0) {
           dispatch(setNoResults(true));

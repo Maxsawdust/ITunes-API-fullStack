@@ -12,7 +12,8 @@ export default interface ResultType {
   kind?: string;
   wrapperType?: string;
   primaryGenreName: string;
-  releaseDate: string;
+  releaseDate: Date;
+  date: string;
   trackId?: number;
   collectionId?: number;
   id?: number;

@@ -100,7 +100,10 @@ export default function FavouritesPage() {
           <div className="">
             <h1 className="text-4xl font-semibold">There's nothing here!</h1>
             <h2 className="text-xl text-gray-300">
-              Try browsing our selection of {categoryToDisplay}s
+              Try browsing our selection of{" "}
+              {categoryToDisplay !== "all"
+                ? `${categoryToDisplay}s`
+                : "content"}
             </h2>
           </div>
         )}

@@ -4,3 +4,6 @@ export { default as SearchResults } from "./search/SearchResults";
 export { default as ResultCard } from "./structural/ResultCard";
 export { default as ResultKindLabel } from "./structural/ResultKindLabel";
 export { default as AddToFavourites } from "./features/AddToFavourites";
+export { default as ResultCardExtended } from "./structural/ResultCardExtended";
+export { default as AlbumCard } from "./structural/AlbumCard";
+export { default as SongCard } from "./structural/SongCard";

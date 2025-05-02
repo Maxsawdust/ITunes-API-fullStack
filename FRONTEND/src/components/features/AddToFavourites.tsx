@@ -6,9 +6,10 @@ import {
   addToFavourites,
   removeFromFavourites,
 } from "../../store/reducers/favouritesReducer";
+import { SongType } from "../../types";
 
 interface Props {
-  result: ResultType;
+  result: ResultType | SongType;
 }
 
 export default function AddToFavourites({ result }: Props) {
@@ -32,7 +33,7 @@ export default function AddToFavourites({ result }: Props) {
   };
   return (
     <button
-      className="absolute right-7.5 bottom-7.5 cursor-pointer"
+      className={`absolute right-7.5 bottom-7.5 cursor-pointer`}
       onClick={toggleFavourite}>
       <FaStar className={`h-7 w-7 ${isFavourite ? "fill-yellow-500" : ""}`} />
     </button>
