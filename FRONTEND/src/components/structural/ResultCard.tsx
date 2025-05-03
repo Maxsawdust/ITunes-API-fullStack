@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import ResultType from "../../types/resultsType";
 import { ResultKindLabel, AddToFavourites } from "../";
 import { easeIn, motion } from "framer-motion";
+import { FavouriteItem } from "../../store/reducers/favouritesReducer";
 
 interface ResultCardProps {
-  result: ResultType;
+  result: FavouriteItem;
   index: number;
 }
 

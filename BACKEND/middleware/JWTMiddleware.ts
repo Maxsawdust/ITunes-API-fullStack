@@ -12,10 +12,12 @@ export default async function JWTMiddleware(
     const token = req.cookies.token;
     const secret = process.env.JWT_SECRET;
 
+    // check if the secret exists
     if (!secret) {
       throw new Error("JWT_SECRET not found in environment variables");
     }
 
+    // check if the token exists
     if (!token) {
       res.status(401).json({ message: "Failed auth: No token" });
       return;

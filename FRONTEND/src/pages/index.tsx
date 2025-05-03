@@ -2,11 +2,13 @@ import { useAppSelector } from "../store/hooks/reduxHooks";
 import { easeIn, motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ResultCard } from "../components";
-import ResultType from "../types/resultsType";
+import { FavouriteItem } from "../store/reducers/favouritesReducer";
+
+// This is the index route at "/", I wanted it to function as the favourites page
 export default function FavouritesPage() {
   const favourites = useAppSelector((state) => state.favourites.favourites);
   const [categoryToDisplay, setCategoryToDisplay] = useState<string>("all");
-  const [favsToDisplay, setFavsToDisplay] = useState<ResultType[]>([]);
+  const [favsToDisplay, setFavsToDisplay] = useState<FavouriteItem[]>([]);
 
   useEffect(() => {
     if (categoryToDisplay === "all") {
@@ -18,6 +20,7 @@ export default function FavouritesPage() {
     }
   }, [categoryToDisplay, favourites]);
 
+  // these elements use framer-motion to control animation on entry and exit
   return (
     <div className="flex-1 flex flex-col  gap-5 py-10 px-30">
       {/* HEADING */}

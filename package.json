@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "install-all": "concurrently \"cd FRONTEND && npm install \" \"cd BACKEND && npm install\" ",
     "dev": "concurrently \"cd FRONTEND && npm run dev \" \"cd BACKEND && npm run dev\""
   },
   "keywords": [],
@@ -12,8 +13,5 @@
   "devDependencies": {
     "concurrently": "^9.1.2"
   },
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.7.0",
-    "react-redux": "^9.2.0"
-  }
+  "dependencies": {}
 }

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import ResultType from "../../types/resultsType";
 import { SongType } from "../../types";
 
-type FavouriteItem = ResultType | SongType;
+export type FavouriteItem = ResultType | SongType;
 
 interface FavouritesReducerType {
   favourites: FavouriteItem[];

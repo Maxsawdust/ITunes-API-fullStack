@@ -31,4 +31,5 @@ export default interface SongType {
   trackTimeMillis: number;
   trackViewUrl: string;
   wrapperType: string;
+  name: string;
 }

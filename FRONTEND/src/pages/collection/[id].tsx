@@ -20,6 +20,7 @@ export default function CollectionItem() {
 
   const getContentDetails = async () => {
     try {
+      // fetch with credentials to allow cookies
       const response = await fetch(`http://localhost:8080/api/search/${id}`, {
         credentials: "include",
       });
@@ -30,6 +31,8 @@ export default function CollectionItem() {
         throw new Error(data.messsage);
       }
 
+      //  add a uniform id, name, kind, and date property to the data
+      // this adds parity between all media types
       const formattedData: ResultType = {
         ...data.results[0],
         id: getResultId(data.results[0]),

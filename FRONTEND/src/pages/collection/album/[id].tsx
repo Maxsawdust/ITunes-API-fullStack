@@ -5,13 +5,15 @@ import { AlbumCard } from "../../../components";
 import { SongType } from "../../../types";
 import getResultId from "../../../utils/getResultId";
 
+// /collection/album/:id
 export default function AlbumPage() {
   const [contentToDisplay, setContentToDisplay] = useState<AlbumType>();
-
   const [albumSongs, setAlbumSongs] = useState<SongType[]>([]);
 
+  // the album's collectionId from params
   const { id } = useParams();
 
+  // fetch the album and the songs within the album on mount
   useEffect(() => {
     getAlbum();
     getAlbumSongs();

@@ -77,7 +77,7 @@ export const queryById = async (req: Request, res: Response) => {
 
 export const getAlbumByID = async (req: Request, res: Response) => {
   try {
-    // get id from params
+    // get album id from params
     const { id } = req.params;
 
     // send request to iTunes API
